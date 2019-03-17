@@ -1,6 +1,6 @@
 # taptaptap2
 
-A toy app for my cildren
+A toy app for my children
 
 ## Getting Started
 

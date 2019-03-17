@@ -7,11 +7,19 @@ import 'package:flutter/material.dart';
 class Circle extends StatefulWidget {
   static const CIRCLE_SIZE = 150.0;
 
+  Circle({@required this.x, @required this.y});
+  final double x;
+  final double y;
+
   @override
-  State<StatefulWidget> createState() => _CircleState();
+  State<StatefulWidget> createState() => _CircleState(x, y);
 }
 
 class _CircleState extends State<Circle> with TickerProviderStateMixin {
+  _CircleState(this._x, this._y);
+  final double _x;
+  final double _y;
+
   bool animationCompleted = false;
 
   @override
@@ -27,21 +35,25 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        AnimatedOpacity(
-          duration: const Duration(milliseconds: 2000),
-          opacity: animationCompleted ? 0 : 1,
-          curve: Curves.easeInOut,
-          child: SizedBox(
-            width: Circle.CIRCLE_SIZE,
-            height: Circle.CIRCLE_SIZE,
-            child: CustomPaint(
-              foregroundPainter: _CirclePainter(Colors.blue),
+    return Positioned(
+      left: _x,
+      top: _y,
+      child: Stack(
+        children: [
+          AnimatedOpacity(
+            duration: const Duration(milliseconds: 2000),
+            opacity: animationCompleted ? 0 : 1,
+            curve: Curves.easeInOut,
+            child: SizedBox(
+              width: Circle.CIRCLE_SIZE,
+              height: Circle.CIRCLE_SIZE,
+              child: CustomPaint(
+                foregroundPainter: _CirclePainter(Colors.blue),
+              ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

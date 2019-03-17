@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:taptaptap2/bloc/circles_bloc_provider.dart';
 import 'package:taptaptap2/widget/circles.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(CirclesBlocProvider(child: MyApp()));
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
