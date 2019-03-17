@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'dart:math';
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 
@@ -9,54 +10,40 @@ class Circle extends StatefulWidget {
 }
 
 class _CircleState extends State<Circle> with TickerProviderStateMixin {
-  AnimationController _animationController;
-  CurvedAnimation _curvedAnimation;
-
-  bool _isAnimationCompleted = false;
+  bool animationCompleted = false;
 
   @override
   void initState() {
-    _animationController = AnimationController(
-      duration: const Duration(seconds: 3),
-      vsync: this,
-    )
-    ..addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        setState(() {
-          _isAnimationCompleted = true;
-        });
-      }
-    })
-    ..forward();
 
-    _curvedAnimation =
-        CurvedAnimation(parent: _animationController, curve: Curves.easeInOut);
+    Timer(const Duration(seconds: 1), (){
+      setState(() {
+        animationCompleted = true;
+      });
+    });
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return _isAnimationCompleted
-    ? Container()
-    : ScaleTransition(
-        scale: _curvedAnimation,
-        child: Container(
-      width: 200,
-      height: 200,
-      child: CustomPaint(
-        foregroundPainter: _CirclePainter(Colors.blue),
-      ),
-    ));
+
+    return Stack(
+      children: [
+        AnimatedOpacity(
+            duration: const Duration(milliseconds: 2000),
+            opacity: animationCompleted ? 0 : 1,
+            curve: Curves.easeInOut,
+            child: SizedBox(
+              width: 200,
+              height: 200,
+              child: CustomPaint(
+                foregroundPainter: _CirclePainter(Colors.blue),
+              ),
+            ))
+      ],
+    ) ;
   }
 
-  @override
-  void dispose() {
-    if (_animationController != null) {
-      _animationController.dispose();
-      _animationController = null;
-    }
-    super.dispose();
-  }
 }
 
 class _CirclePainter extends CustomPainter {
