@@ -5,6 +5,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class Circle extends StatefulWidget {
+  static const CIRCLE_SIZE = 150.0;
+
   @override
   State<StatefulWidget> createState() => _CircleState();
 }
@@ -14,8 +16,7 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
 
   @override
   void initState() {
-
-    Timer(const Duration(seconds: 1), (){
+    Timer(const Duration(milliseconds: 800), () {
       setState(() {
         animationCompleted = true;
       });
@@ -26,24 +27,23 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-
     return Stack(
       children: [
         AnimatedOpacity(
-            duration: const Duration(milliseconds: 2000),
-            opacity: animationCompleted ? 0 : 1,
-            curve: Curves.easeInOut,
-            child: SizedBox(
-              width: 200,
-              height: 200,
-              child: CustomPaint(
-                foregroundPainter: _CirclePainter(Colors.blue),
-              ),
-            ))
+          duration: const Duration(milliseconds: 2000),
+          opacity: animationCompleted ? 0 : 1,
+          curve: Curves.easeInOut,
+          child: SizedBox(
+            width: Circle.CIRCLE_SIZE,
+            height: Circle.CIRCLE_SIZE,
+            child: CustomPaint(
+              foregroundPainter: _CirclePainter(Colors.blue),
+            ),
+          ),
+        )
       ],
-    ) ;
+    );
   }
-
 }
 
 class _CirclePainter extends CustomPainter {
