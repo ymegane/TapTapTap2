@@ -25,6 +25,8 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
   AnimationController _animationController;
   CurvedAnimation _curvedAnimation;
 
+  final _rondomColor = _RandomColor().get();
+
   @override
   void initState() {
     _animationController = AnimationController(
@@ -60,7 +62,7 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
           width: Circle.CIRCLE_SIZE,
           height: Circle.CIRCLE_SIZE,
           child: CustomPaint(
-            foregroundPainter: _CirclePainter(Colors.blue.withAlpha(200)),
+            foregroundPainter: _CirclePainter(_rondomColor),
           ),
         ),
       ),
@@ -71,6 +73,14 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
   void dispose() {
     _animationController?.dispose();
     super.dispose();
+  }
+}
+
+class _RandomColor {
+  final colors = Colors.primaries;
+
+  Color get() {
+    return colors[Random.secure().nextInt(colors.length)].withAlpha(200);
   }
 }
 
