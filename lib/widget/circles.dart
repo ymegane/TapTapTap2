@@ -35,9 +35,13 @@ class _CirclesState extends State<Circles> {
     final Offset localOffset = box.globalToLocal(details.globalPosition);
     final circleRadius = Circle.CIRCLE_SIZE / 2;
 
-    bloc.add.add(
+    bloc.circleAddition.add(
       Circle(
-          x: localOffset.dx - circleRadius, y: localOffset.dy - circleRadius),
+        key: UniqueKey(),
+        x: localOffset.dx - circleRadius,
+        y: localOffset.dy - circleRadius,
+        bloc: bloc,
+      ),
     );
   }
 }

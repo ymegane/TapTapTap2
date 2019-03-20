@@ -1,34 +1,49 @@
 import 'dart:ui';
 import 'dart:math';
-import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:taptaptap2/bloc/circles_bloc.dart';
 
 class Circle extends StatefulWidget {
   static const CIRCLE_SIZE = 150.0;
 
-  Circle({@required this.x, @required this.y});
+  const Circle(
+      {@required Key key,
+      @required this.x,
+      @required this.y,
+      @required this.bloc})
+      : super(key: key);
   final double x;
   final double y;
+  final CirclesBloc bloc;
 
   @override
-  State<StatefulWidget> createState() => _CircleState(x, y);
+  State<StatefulWidget> createState() => _CircleState();
 }
 
 class _CircleState extends State<Circle> with TickerProviderStateMixin {
-  _CircleState(this._x, this._y);
-  final double _x;
-  final double _y;
-
-  bool animationCompleted = false;
+  AnimationController _animationController;
+  CurvedAnimation _curvedAnimation;
 
   @override
   void initState() {
-    Timer(const Duration(milliseconds: 800), () {
-      setState(() {
-        animationCompleted = true;
-      });
-    });
+    _animationController = AnimationController(
+      duration: Duration(milliseconds: 2000),
+      value: 1.0,
+      vsync: this,
+    )
+      ..addListener(() {
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.dismissed) {
+          print(status);
+          widget.bloc.circleDeletion.add(widget);
+        }
+      })
+      ..reverse();
+    _curvedAnimation = CurvedAnimation(
+        parent: _animationController, curve: Curves.fastOutSlowIn);
 
     super.initState();
   }
@@ -36,25 +51,26 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      left: _x,
-      top: _y,
-      child: Stack(
-        children: [
-          AnimatedOpacity(
-            duration: const Duration(milliseconds: 2000),
-            opacity: animationCompleted ? 0 : 1,
-            curve: Curves.easeInOut,
-            child: SizedBox(
-              width: Circle.CIRCLE_SIZE,
-              height: Circle.CIRCLE_SIZE,
-              child: CustomPaint(
-                foregroundPainter: _CirclePainter(Colors.blue),
-              ),
-            ),
-          )
-        ],
+      left: widget.x,
+      top: widget.y,
+      child: FadeTransition(
+        opacity: _curvedAnimation,
+        alwaysIncludeSemantics: true,
+        child: SizedBox(
+          width: Circle.CIRCLE_SIZE,
+          height: Circle.CIRCLE_SIZE,
+          child: CustomPaint(
+            foregroundPainter: _CirclePainter(Colors.blue.withAlpha(200)),
+          ),
+        ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _animationController?.dispose();
+    super.dispose();
   }
 }
 
