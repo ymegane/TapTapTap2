@@ -8,7 +8,7 @@ class CirclesBlocProvider extends BlocProvider<CirclesBloc> {
     @required Widget child,
   }) : super(
             child: child,
-            creator: (context, _bag) {
+            creator: (BuildContext context, BlocCreatorBag bag) {
               assert(context != null);
               return CirclesBloc();
             });

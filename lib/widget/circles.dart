@@ -16,16 +16,18 @@ class _CirclesState extends State<Circles> {
   @override
   void initState() {
     super.initState();
-    final bloc = CirclesBlocProvider.of(context);
+    final CirclesBloc bloc = CirclesBlocProvider.of(context);
     _moveEvents = PublishSubject<DragUpdateDetails>();
-    _moveEvents.throttle(Duration(milliseconds: 100)).listen((details) {
+    _moveEvents
+        .throttle(Duration(milliseconds: 100))
+        .listen((DragUpdateDetails details) {
       _handleMove(context, bloc, details);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final bloc = CirclesBlocProvider.of(context);
+    final CirclesBloc bloc = CirclesBlocProvider.of(context);
     return GestureDetector(
       onPanUpdate: (DragUpdateDetails details) {
         _moveEvents.add(details);
@@ -36,7 +38,7 @@ class _CirclesState extends State<Circles> {
         child: StreamBuilder<List<Circle>>(
           stream: bloc.circles,
           initialData: bloc.circles.value,
-          builder: (context, snap) => Stack(
+          builder: (_, AsyncSnapshot<List<Circle>> snap) => Stack(
                 fit: StackFit.expand,
                 children: snap.data,
               ),
@@ -66,7 +68,7 @@ class _CirclesState extends State<Circles> {
   }
 
   void _addCircle(CirclesBloc bloc, Offset offset) {
-    final circleRadius = Circle.CIRCLE_SIZE / 2;
+    const double circleRadius = Circle.CIRCLE_SIZE / 2;
 
     bloc.circleAddition.add(
       Circle(

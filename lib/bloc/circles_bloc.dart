@@ -4,26 +4,27 @@ import 'package:rxdart/rxdart.dart';
 import 'package:taptaptap2/widget/circle.dart';
 
 class CirclesBloc implements Bloc {
-  final _circles = BehaviorSubject<List<Circle>>.seeded([]);
-  final _circleCount = BehaviorSubject<int>.seeded(0);
-
-  final _addController = PublishSubject<Circle>();
-  final _deleteController = PublishSubject<Circle>();
-
-  final _cachedCircles = List<Circle>();
-
   CirclesBloc() {
-    _addController.stream.listen((circle) {
+    _addController.stream.listen((Circle circle) {
       _cachedCircles.add(circle);
       _circles.add(_cachedCircles);
       _circleCount.add(_cachedCircles.length);
     });
-    _deleteController.stream.listen((circle) {
+    _deleteController.stream.listen((Circle circle) {
       _cachedCircles.remove(circle);
       _circles.add(_cachedCircles);
       _circleCount.add(_cachedCircles.length);
     });
   }
+
+  final BehaviorSubject<List<Circle>> _circles =
+      BehaviorSubject<List<Circle>>.seeded(<Circle>[]);
+  final BehaviorSubject<int> _circleCount = BehaviorSubject<int>.seeded(0);
+
+  final PublishSubject<Circle> _addController = PublishSubject<Circle>();
+  final PublishSubject<Circle> _deleteController = PublishSubject<Circle>();
+
+  final List<Circle> _cachedCircles = <Circle>[];
 
   ValueObservable<List<Circle>> get circles => _circles;
 

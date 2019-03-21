@@ -1,21 +1,22 @@
-import 'dart:ui';
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:taptaptap2/bloc/circles_bloc.dart';
 
 class Circle extends StatefulWidget {
-  static const CIRCLE_SIZE = 150.0;
-
   const Circle(
       {@required Key key,
       @required this.x,
       @required this.y,
       @required this.bloc})
       : super(key: key);
+
   final double x;
   final double y;
   final CirclesBloc bloc;
+
+  static const double CIRCLE_SIZE = 150.0;
 
   @override
   State<StatefulWidget> createState() => _CircleState();
@@ -27,7 +28,7 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
   CurvedAnimation _curvedAnimation;
   CurvedAnimation _bounceAnimation;
 
-  final _rondomColor = _RandomColor().get();
+  final Color _randomColor = _RandomColor().get();
 
   @override
   void initState() {
@@ -45,7 +46,7 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
       ..addListener(() {
         setState(() {});
       })
-      ..addStatusListener((status) {
+      ..addStatusListener((AnimationStatus status) {
         if (status == AnimationStatus.dismissed) {
           //print(status);
           widget.bloc.circleDeletion.add(widget);
@@ -74,7 +75,7 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
             width: Circle.CIRCLE_SIZE,
             height: Circle.CIRCLE_SIZE,
             child: CustomPaint(
-              foregroundPainter: _CirclePainter(_rondomColor),
+              foregroundPainter: _CirclePainter(_randomColor),
             ),
           ),
         ),
@@ -91,7 +92,7 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
 }
 
 class _RandomColor {
-  final colors = Colors.primaries;
+  final List<Color> colors = Colors.primaries;
 
   Color get() {
     return colors[Random.secure().nextInt(colors.length)].withAlpha(200);
@@ -105,10 +106,10 @@ class _CirclePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint circle = Paint()..color = circleColor;
+    final Paint circle = Paint()..color = circleColor;
 
-    Offset center = Offset(size.width / 2, size.height / 2);
-    double radius = min(size.width / 2, size.height / 2);
+    final Offset center = Offset(size.width / 2, size.height / 2);
+    final double radius = min(size.width / 2, size.height / 2);
     canvas.drawCircle(center, radius, circle);
   }
 
