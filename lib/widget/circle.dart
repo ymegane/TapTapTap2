@@ -22,15 +22,23 @@ class Circle extends StatefulWidget {
 }
 
 class _CircleState extends State<Circle> with TickerProviderStateMixin {
-  AnimationController _animationController;
+  AnimationController _fadeAnimationController;
+  AnimationController _scaleAnimationController;
   CurvedAnimation _curvedAnimation;
+  CurvedAnimation _bounceAnimation;
 
   final _rondomColor = _RandomColor().get();
 
   @override
   void initState() {
-    _animationController = AnimationController(
-      duration: Duration(milliseconds: 2000),
+    _scaleAnimationController =
+        AnimationController(duration: Duration(milliseconds: 300), vsync: this)
+          ..addListener(() {
+            setState(() {});
+          })
+          ..forward();
+    _fadeAnimationController = AnimationController(
+      duration: Duration(milliseconds: 1500),
       value: 1.0,
       vsync: this,
     )
@@ -39,14 +47,15 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
       })
       ..addStatusListener((status) {
         if (status == AnimationStatus.dismissed) {
-          print(status);
+          //print(status);
           widget.bloc.circleDeletion.add(widget);
         }
       })
       ..reverse();
     _curvedAnimation = CurvedAnimation(
-        parent: _animationController, curve: Curves.fastOutSlowIn);
-
+        parent: _fadeAnimationController, curve: Curves.fastOutSlowIn);
+    _bounceAnimation = CurvedAnimation(
+        parent: _scaleAnimationController, curve: Curves.bounceOut);
     super.initState();
   }
 
@@ -55,14 +64,18 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
     return Positioned(
       left: widget.x,
       top: widget.y,
-      child: FadeTransition(
-        opacity: _curvedAnimation,
-        alwaysIncludeSemantics: true,
-        child: SizedBox(
-          width: Circle.CIRCLE_SIZE,
-          height: Circle.CIRCLE_SIZE,
-          child: CustomPaint(
-            foregroundPainter: _CirclePainter(_rondomColor),
+      child: ScaleTransition(
+        alignment: Alignment.center,
+        scale: _bounceAnimation,
+        child: FadeTransition(
+          opacity: _curvedAnimation,
+          alwaysIncludeSemantics: true,
+          child: SizedBox(
+            width: Circle.CIRCLE_SIZE,
+            height: Circle.CIRCLE_SIZE,
+            child: CustomPaint(
+              foregroundPainter: _CirclePainter(_rondomColor),
+            ),
           ),
         ),
       ),
@@ -71,7 +84,8 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    _animationController?.dispose();
+    _scaleAnimationController.dispose();
+    _fadeAnimationController.dispose();
     super.dispose();
   }
 }

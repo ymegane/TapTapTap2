@@ -1,3 +1,5 @@
+import 'package:rxdart/rxdart.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:taptaptap2/bloc/circles_bloc.dart';
@@ -10,10 +12,24 @@ class Circles extends StatefulWidget {
 }
 
 class _CirclesState extends State<Circles> {
+  PublishSubject<DragUpdateDetails> _moveEvents;
+  @override
+  void initState() {
+    super.initState();
+    final bloc = CirclesBlocProvider.of(context);
+    _moveEvents = PublishSubject<DragUpdateDetails>();
+    _moveEvents.throttle(Duration(milliseconds: 100)).listen((details) {
+      _handleMove(context, bloc, details);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final bloc = CirclesBlocProvider.of(context);
     return GestureDetector(
+      onPanUpdate: (DragUpdateDetails details) {
+        _moveEvents.add(details);
+      },
       onTapDown: (TapDownDetails details) => _handleTap(context, bloc, details),
       child: Container(
         color: Colors.white,
@@ -29,17 +45,34 @@ class _CirclesState extends State<Circles> {
     );
   }
 
+  @override
+  void dispose() {
+    _moveEvents.close();
+    super.dispose();
+  }
+
   void _handleTap(
       BuildContext context, CirclesBloc bloc, TapDownDetails details) {
     final RenderBox box = context.findRenderObject();
     final Offset localOffset = box.globalToLocal(details.globalPosition);
+    _addCircle(bloc, localOffset);
+  }
+
+  void _handleMove(
+      BuildContext context, CirclesBloc bloc, DragUpdateDetails details) {
+    final RenderBox box = context.findRenderObject();
+    final Offset localOffset = box.globalToLocal(details.globalPosition);
+    _addCircle(bloc, localOffset);
+  }
+
+  void _addCircle(CirclesBloc bloc, Offset offset) {
     final circleRadius = Circle.CIRCLE_SIZE / 2;
 
     bloc.circleAddition.add(
       Circle(
         key: UniqueKey(),
-        x: localOffset.dx - circleRadius,
-        y: localOffset.dy - circleRadius,
+        x: offset.dx - circleRadius,
+        y: offset.dy - circleRadius,
         bloc: bloc,
       ),
     );
