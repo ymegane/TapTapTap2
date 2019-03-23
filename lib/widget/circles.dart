@@ -18,6 +18,8 @@ class Circles extends StatefulWidget {
 
 class _CirclesState extends State<Circles> {
   PublishSubject<DragUpdateDetails> _moveEvents;
+  PublishSubject<CirclesBloc> _soundController;
+
   Soundpool _soundpool;
   final List<int> _soundEffects = <int>[];
 
@@ -38,6 +40,12 @@ class _CirclesState extends State<Circles> {
       _handleMove(context, bloc, details);
     });
 
+    _soundController = PublishSubject<CirclesBloc>();
+    _soundController
+        .throttle(Duration(milliseconds: 500))
+        .listen((CirclesBloc bloc) {
+      _playEffect();
+    });
   }
 
   @override
@@ -76,6 +84,7 @@ class _CirclesState extends State<Circles> {
   @override
   void dispose() {
     _moveEvents.close();
+    _soundController.close();
     _soundpool.release();
     super.dispose();
   }
@@ -105,7 +114,7 @@ class _CirclesState extends State<Circles> {
         bloc: bloc,
       ),
     );
-    await _playEffect();
+    _soundController.add(bloc);
   }
 
   Future<List<int>> _loadEffectSounds(BuildContext context) async {
