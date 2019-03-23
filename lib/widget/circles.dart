@@ -4,6 +4,7 @@ import 'package:rxdart/rxdart.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show ByteData, rootBundle;
+import 'package:flutter/gestures.dart';
 import 'package:soundpool/soundpool.dart';
 
 import 'package:taptaptap2/bloc/circles_bloc.dart';
@@ -36,16 +37,28 @@ class _CirclesState extends State<Circles> {
         .listen((DragUpdateDetails details) {
       _handleMove(context, bloc, details);
     });
+
   }
 
   @override
   Widget build(BuildContext context) {
     final CirclesBloc bloc = CirclesBlocProvider.of(context);
-    return GestureDetector(
-      onPanUpdate: (DragUpdateDetails details) {
-        _moveEvents.add(details);
+    return RawGestureDetector(
+      gestures: <Type, GestureRecognizerFactory<GestureRecognizer>>{
+        MultiTapGestureRecognizer:
+            GestureRecognizerFactoryWithHandlers<MultiTapGestureRecognizer>(
+                () => MultiTapGestureRecognizer(),
+                (MultiTapGestureRecognizer instance) {
+          instance.onTapDown = (int pointer, TapDownDetails details) =>
+              _handleTap(context, bloc, details);
+        }),
+        PanGestureRecognizer:
+            GestureRecognizerFactoryWithHandlers<PanGestureRecognizer>(
+                () => PanGestureRecognizer(), (PanGestureRecognizer instance) {
+          instance.onUpdate =
+              (DragUpdateDetails details) => _moveEvents.add(details);
+        }),
       },
-      onTapDown: (TapDownDetails details) => _handleTap(context, bloc, details),
       child: Container(
         color: Colors.white,
         child: StreamBuilder<List<Circle>>(
