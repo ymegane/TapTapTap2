@@ -35,14 +35,14 @@ class _CirclesState extends State<Circles> {
     final CirclesBloc bloc = CirclesBlocProvider.of(context);
     _moveEvents = PublishSubject<DragUpdateDetails>();
     _moveEvents
-        .throttle(Duration(milliseconds: 200))
+        .throttle(Duration(milliseconds: 100))
         .listen((DragUpdateDetails details) {
       _handleMove(context, bloc, details);
     });
 
     _soundController = PublishSubject<CirclesBloc>();
     _soundController
-        .throttle(Duration(milliseconds: 3000))
+        .throttle(Duration(milliseconds: 2000))
         .listen((CirclesBloc bloc) {
       _playEffect();
     });
