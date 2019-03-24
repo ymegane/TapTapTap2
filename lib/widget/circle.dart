@@ -16,7 +16,7 @@ class Circle extends StatefulWidget {
   final double y;
   final CirclesBloc bloc;
 
-  static const double CIRCLE_SIZE = 150.0;
+  static const double CIRCLE_SIZE = 300.0;
 
   @override
   State<StatefulWidget> createState() => _CircleState();
@@ -25,21 +25,23 @@ class Circle extends StatefulWidget {
 class _CircleState extends State<Circle> with TickerProviderStateMixin {
   AnimationController _fadeAnimationController;
   AnimationController _scaleAnimationController;
-  CurvedAnimation _curvedAnimation;
-  CurvedAnimation _bounceAnimation;
+  CurvedAnimation _fadeAnimation;
+  CurvedAnimation _scaleAnimation;
 
   final Color _randomColor = _RandomColor().get();
 
   @override
   void initState() {
-    _scaleAnimationController =
-        AnimationController(duration: Duration(milliseconds: 300), vsync: this)
-          ..addListener(() {
-            setState(() {});
-          })
-          ..forward();
+    _scaleAnimationController = AnimationController(
+      duration: Duration(milliseconds: 1000),
+      vsync: this,
+    )
+      ..addListener(() {
+        setState(() {});
+      })
+      ..forward();
     _fadeAnimationController = AnimationController(
-      duration: Duration(milliseconds: 1500),
+      duration: Duration(milliseconds: 1000),
       value: 1.0,
       vsync: this,
     )
@@ -53,10 +55,11 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
         }
       })
       ..reverse();
-    _curvedAnimation = CurvedAnimation(
-        parent: _fadeAnimationController, curve: Curves.fastOutSlowIn);
-    _bounceAnimation = CurvedAnimation(
-        parent: _scaleAnimationController, curve: Curves.bounceOut);
+    _fadeAnimation = CurvedAnimation(
+        parent: _fadeAnimationController, curve: Curves.fastLinearToSlowEaseIn);
+    _scaleAnimation = CurvedAnimation(
+        parent: _scaleAnimationController,
+        curve: Curves.fastLinearToSlowEaseIn);
     super.initState();
   }
 
@@ -67,9 +70,9 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
       top: widget.y,
       child: ScaleTransition(
         alignment: Alignment.center,
-        scale: _bounceAnimation,
+        scale: _scaleAnimation,
         child: FadeTransition(
-          opacity: _curvedAnimation,
+          opacity: _fadeAnimation,
           alwaysIncludeSemantics: true,
           child: SizedBox(
             width: Circle.CIRCLE_SIZE,
