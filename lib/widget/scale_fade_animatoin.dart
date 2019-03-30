@@ -15,18 +15,9 @@ class ScaleFadeAnimation extends StatelessWidget {
             curve: Curves.linear,
           ),
         ),
-        width = Tween<double>(
+        size = Tween<double>(
           begin: 0.0,
-          end: Circle.CIRCLE_SIZE,
-        ).animate(
-          CurvedAnimation(
-            parent: controller,
-            curve: Curves.fastLinearToSlowEaseIn,
-          ),
-        ),
-        height = Tween<double>(
-          begin: 0.0,
-          end: Circle.CIRCLE_SIZE,
+          end: Circle.SIZE,
         ).animate(
           CurvedAnimation(
             parent: controller,
@@ -35,8 +26,8 @@ class ScaleFadeAnimation extends StatelessWidget {
         ),
         padding = EdgeInsetsTween(
           begin: const EdgeInsets.only(
-            left: Circle.CIRCLE_SIZE / 2,
-            top: Circle.CIRCLE_SIZE / 2,
+            left: Circle.SIZE / 2,
+            top: Circle.SIZE / 2,
           ),
           end: const EdgeInsets.only(
             left: 0,
@@ -53,8 +44,7 @@ class ScaleFadeAnimation extends StatelessWidget {
   final Animation<double> controller;
   final Animation<double> opacity;
   final Animation<EdgeInsets> padding;
-  final Animation<double> width;
-  final Animation<double> height;
+  final Animation<double> size;
   final Decoration decoration;
 
   Widget _buildAnimation(BuildContext context, Widget child) {
@@ -64,8 +54,8 @@ class ScaleFadeAnimation extends StatelessWidget {
       child: Opacity(
         opacity: opacity.value,
         child: Container(
-          width: width.value,
-          height: height.value,
+          width: size.value,
+          height: size.value,
           decoration: decoration,
         ),
       ),

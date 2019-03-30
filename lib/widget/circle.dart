@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:taptaptap2/bloc/circles_bloc.dart';
+
 import 'scale_fade_animatoin.dart';
 
 class Circle extends StatefulWidget {
@@ -17,7 +18,7 @@ class Circle extends StatefulWidget {
   final double y;
   final CirclesBloc bloc;
 
-  static const double CIRCLE_SIZE = 300.0;
+  static const double SIZE = 300.0;
 
   @override
   State<StatefulWidget> createState() => _CircleState();

@@ -1,12 +1,10 @@
 import 'dart:math';
 
-import 'package:rxdart/rxdart.dart';
-
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show ByteData, rootBundle;
-import 'package:flutter/gestures.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:soundpool/soundpool.dart';
-
 import 'package:taptaptap2/bloc/circles_bloc.dart';
 import 'package:taptaptap2/bloc/circles_bloc_provider.dart';
 import 'package:taptaptap2/widget/circle.dart';
@@ -104,7 +102,7 @@ class _CirclesState extends State<Circles> {
   }
 
   Future<void> _addCircle(CirclesBloc bloc, Offset offset) async {
-    const double circleRadius = Circle.CIRCLE_SIZE / 2;
+    const double circleRadius = Circle.SIZE / 2;
 
     bloc.circleAddition.add(
       Circle(
