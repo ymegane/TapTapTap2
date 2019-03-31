@@ -19,6 +19,8 @@ void main() {
 
     test('tap', () async {
       final Timeline timeline = await driver.traceAction(() async {
+        await driver.tap(find.text('Start'));
+
         // Tap 3 times
         await driver.tap(find.byType('Circles'));
         await driver.tap(find.byType('Circles'));
