@@ -14,7 +14,7 @@ class LaunchScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     'TapTapTap',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -24,7 +24,7 @@ class LaunchScreen extends StatelessWidget {
                   const Padding(
                     padding: EdgeInsets.all(4.0),
                   ),
-                  Text(
+                  const Text(
                     'A toy app for my children',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -54,6 +54,9 @@ class LaunchScreen extends StatelessWidget {
               child: Text(
                 'Copyright 2019 @y_megane',
                 textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 14.0,
+                ),
               ),
             )
           ],
