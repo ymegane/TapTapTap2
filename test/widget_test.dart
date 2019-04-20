@@ -16,7 +16,7 @@ void main() {
       // Build our app and trigger a frame.
       await tester.pumpWidget(MyApp());
       await tester.tap(find.text('Start'));
-      await tester.pump();
+      await tester.pumpAndSettle();
 
       await tester.tap(find.byType(Circles), pointer: 0);
       await tester.tap(find.byType(Circles), pointer: 1);
