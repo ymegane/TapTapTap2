@@ -18,7 +18,8 @@ class LaunchScreen extends StatelessWidget {
                     'TapTapTap',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 32.0,
+                      fontFamily: 'LuckiestGuy',
+                      fontSize: 48.0,
                     ),
                   ),
                   const Padding(
