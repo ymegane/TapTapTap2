@@ -1,10 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LaunchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
+    return CupertinoPageScaffold(
+      child: SafeArea(
         child: Stack(
           children: <Widget>[
             Align(
@@ -35,14 +36,9 @@ class LaunchScreen extends StatelessWidget {
                   ),
                   SizedBox(
                     width: 240,
-                    child: RaisedButton(
+                    child: CupertinoButton(
                       color: Theme.of(context).primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(8.0),
-                        ),
-                      ),
-                      textColor: Colors.white,
+                      borderRadius: BorderRadius.circular(8.0),
                       child: const Text(
                         'Start',
                         textAlign: TextAlign.center,
@@ -68,5 +64,5 @@ class LaunchScreen extends StatelessWidget {
 }
 
 void _handleStartClick(BuildContext context) {
-  Navigator.pushReplacementNamed(context, 'playground');
+  Navigator.pushReplacementNamed(context, '/playground');
 }
