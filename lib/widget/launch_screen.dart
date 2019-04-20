@@ -68,5 +68,5 @@ class LaunchScreen extends StatelessWidget {
 }
 
 void _handleStartClick(BuildContext context) {
-  Navigator.pushReplacementNamed(context, '/playground');
+  Navigator.pushNamed(context, '/playground');
 }
