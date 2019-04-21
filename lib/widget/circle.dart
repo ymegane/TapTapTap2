@@ -1,8 +1,8 @@
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:taptaptap2/bloc/circles_bloc.dart';
+import 'package:taptaptap2/util/random_color.dart' as random_color;
 
 import 'scale_fade_animatoin.dart';
 
@@ -27,7 +27,7 @@ class Circle extends StatefulWidget {
 class _CircleState extends State<Circle> with TickerProviderStateMixin {
   AnimationController _animationController;
 
-  final Color _randomColor = _RandomColor().get();
+  final Color _randomColor = random_color.get();
 
   @override
   void initState() {
@@ -93,13 +93,5 @@ class _CirclePainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return false;
-  }
-}
-
-class _RandomColor {
-  final List<Color> colors = Colors.primaries;
-
-  Color get() {
-    return colors[Random.secure().nextInt(colors.length)].withAlpha(200);
   }
 }
