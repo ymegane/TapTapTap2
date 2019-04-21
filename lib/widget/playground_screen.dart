@@ -12,13 +12,16 @@ class PlaygroundScreen extends StatelessWidget {
             child: Circles(),
           ),
           SafeArea(
-            child: SizedBox(
-              height: 48,
-              child: RaisedButton(
-                color: Colors.white,
-                child: const Icon(Icons.close),
-                shape: CircleBorder(),
-                onPressed: () => Navigator.of(context).pop(),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: SizedBox(
+                height: 48,
+                child: RaisedButton(
+                  color: Colors.white,
+                  child: const Icon(Icons.close),
+                  shape: CircleBorder(),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
               ),
             ),
           )
