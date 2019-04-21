@@ -141,7 +141,12 @@ class _CirclesState extends State<Circles> {
         .then((ByteData soundData) {
       return _soundpool.load(soundData);
     });
-    return <int>[sound1, sound2, sound3, sound4, sound5];
+    final int sound6 = await rootBundle
+        .load('assets/ani_ge_flog03.mp3')
+        .then((ByteData soundData) {
+      return _soundpool.load(soundData);
+    });
+    return <int>[sound1, sound2, sound3, sound4, sound5, sound6];
   }
 
   final Random random = Random.secure();
