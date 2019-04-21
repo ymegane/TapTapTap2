@@ -50,13 +50,16 @@ class LaunchScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const Align(
+            Align(
               alignment: Alignment.bottomCenter,
-              child: Text(
-                'Copyright 2019 @y_megane',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 14.0,
+              child: Container(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: const Text(
+                  'Copyright 2019 @y_megane',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 14.0,
+                  ),
                 ),
               ),
             )
