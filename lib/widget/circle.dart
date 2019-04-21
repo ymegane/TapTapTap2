@@ -61,9 +61,8 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
       top: widget.y,
       child: ScaleFadeAnimation(
         controller: _animationController.view,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: _randomColor,
+        child: CustomPaint(
+          foregroundPainter: _CirclePainter(_randomColor),
         ),
       ),
     );
@@ -73,6 +72,27 @@ class _CircleState extends State<Circle> with TickerProviderStateMixin {
   void dispose() {
     _animationController.dispose();
     super.dispose();
+  }
+}
+
+class _CirclePainter extends CustomPainter {
+  _CirclePainter(this.circleColor);
+
+  final Color circleColor;
+  final Paint shapePainter = Paint();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Paint circle = shapePainter..color = circleColor;
+
+    final Offset center = Offset(size.width / 2, size.height / 2);
+    final double radius = size.width / 2;
+    canvas.drawCircle(center, radius, circle);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
   }
 }
 

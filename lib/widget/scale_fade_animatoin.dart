@@ -5,7 +5,7 @@ class ScaleFadeAnimation extends StatelessWidget {
   ScaleFadeAnimation({
     Key key,
     @required this.controller,
-    @required this.decoration,
+    @required this.child,
   })  : opacity = Tween<double>(
           begin: 1.0,
           end: 0,
@@ -45,7 +45,7 @@ class ScaleFadeAnimation extends StatelessWidget {
   final Animation<double> opacity;
   final Animation<EdgeInsets> padding;
   final Animation<double> size;
-  final Decoration decoration;
+  final Widget child;
 
   Widget _buildAnimation(BuildContext context, Widget child) {
     return Container(
@@ -56,7 +56,7 @@ class ScaleFadeAnimation extends StatelessWidget {
         child: Container(
           width: size.value,
           height: size.value,
-          decoration: decoration,
+          child: this.child,
         ),
       ),
     );
