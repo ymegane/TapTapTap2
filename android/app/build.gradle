@@ -45,6 +45,22 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions "default"
+    productFlavors {
+        development {
+            dimension "default"
+            applicationId "org.ymegane.taptaptap2.development"
+        }
+        adhoc {
+            dimension "default"
+            applicationId "org.ymegane.taptaptap2.adhoc"
+        }
+        production {
+            dimension "default"
+            applicationId "org.ymegane.taptaptap2"
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
