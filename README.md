@@ -1,4 +1,5 @@
 # taptaptap2
+[![Build Status](https://app.bitrise.io/app/828b98e722bab441/status.svg?token=NUzi3NDLpSD4vlCA1iBnWA&branch=master)](https://app.bitrise.io/app/828b98e722bab441)
 
 A toy app for my children
 
