@@ -1,0 +1,4 @@
+PRODUCT_BUNDLE_IDENTIFIER=org.ymegane.taptaptap2.development
+IOS_DISPLAY_NAME = D Tap;
+
+FLUTTER_FLAVOR=Development
