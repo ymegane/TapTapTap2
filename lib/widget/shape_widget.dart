@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:taptaptap2/bloc/shapes_bloc.dart';
 import 'package:taptaptap2/util/random_color.dart' as random_color;
+import 'package:taptaptap2/util/random_shape.dart' as random_shape;
 
 import 'scale_fade_animatoin.dart';
 
@@ -63,7 +64,10 @@ class _ShapeWidgetState extends State<ShapeWidget>
       child: ScaleFadeAnimation(
         controller: _animationController.view,
         child: CustomPaint(
-          foregroundPainter: _CirclePainter(_randomColor),
+          foregroundPainter: _ShapePainter(
+            _randomColor,
+            random_shape.Shape.Circle,
+          ),
         ),
       ),
     );
@@ -76,19 +80,38 @@ class _ShapeWidgetState extends State<ShapeWidget>
   }
 }
 
-class _CirclePainter extends CustomPainter {
-  _CirclePainter(this.circleColor);
+class _ShapePainter extends CustomPainter {
+  _ShapePainter(this.shapeColor, this.shapeType);
 
-  final Color circleColor;
+  final Color shapeColor;
+  final random_shape.Shape shapeType;
   final Paint shapePainter = Paint();
 
   @override
   void paint(Canvas canvas, Size size) {
-    final Paint circle = shapePainter..color = circleColor;
+    final Paint paint = shapePainter..color = shapeColor;
 
     final Offset center = Offset(size.width / 2, size.height / 2);
     final double radius = size.width / 2;
-    canvas.drawCircle(center, radius, circle);
+
+    switch (shapeType) {
+      case random_shape.Shape.Rect:
+        canvas.drawRect(Rect.fromCircle(center: center, radius: radius), paint);
+        break;
+      case random_shape.Shape.Circle:
+        canvas.drawCircle(center, radius, paint);
+        break;
+      case random_shape.Shape.Triangle:
+        final Path path = Path();
+        path.addPolygon(<Offset>[
+          Offset(center.dx, 0),
+          Offset(size.width, size.height),
+          Offset(0, size.height),
+        ], true);
+        break;
+      default:
+        break;
+    }
   }
 
   @override
