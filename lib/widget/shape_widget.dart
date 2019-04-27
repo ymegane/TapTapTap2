@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:taptaptap2/bloc/circles_bloc.dart';
+import 'package:taptaptap2/bloc/shapes_bloc.dart';
 import 'package:taptaptap2/util/random_color.dart' as random_color;
 
 import 'scale_fade_animatoin.dart';
@@ -16,7 +16,7 @@ class ShapeWidget extends StatefulWidget {
 
   final double x;
   final double y;
-  final CirclesBloc bloc;
+  final ShapesBloc bloc;
 
   static const double SIZE = 300.0;
 
@@ -38,7 +38,7 @@ class _ShapeWidgetState extends State<ShapeWidget>
     )..addStatusListener((AnimationStatus status) {
         //print(status);
         if (status == AnimationStatus.completed) {
-          widget.bloc.circleDeletion.add(widget);
+          widget.bloc.shapeDeletion.add(widget);
         }
       });
 

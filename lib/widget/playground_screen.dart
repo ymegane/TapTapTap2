@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taptaptap2/bloc/circles_bloc_provider.dart';
+import 'package:taptaptap2/bloc/shapes_bloc_provider.dart';
 import 'package:taptaptap2/widget/playground.dart';
 
 class PlaygroundScreen extends StatelessWidget {

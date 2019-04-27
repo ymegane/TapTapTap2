@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show ByteData, rootBundle;
 import 'package:rxdart/rxdart.dart';
 import 'package:soundpool/soundpool.dart';
-import 'package:taptaptap2/bloc/circles_bloc.dart';
-import 'package:taptaptap2/bloc/circles_bloc_provider.dart';
+import 'package:taptaptap2/bloc/shapes_bloc.dart';
+import 'package:taptaptap2/bloc/shapes_bloc_provider.dart';
 import 'package:taptaptap2/widget/shape_widget.dart';
 
 class Playground extends StatefulWidget {
@@ -16,7 +16,7 @@ class Playground extends StatefulWidget {
 
 class _PlaygroundState extends State<Playground> {
   PublishSubject<DragUpdateDetails> _moveEvents;
-  PublishSubject<CirclesBloc> _soundController;
+  PublishSubject<ShapesBloc> _soundController;
 
   Soundpool _soundpool;
   final List<int> _soundEffects = <int>[];
@@ -30,7 +30,7 @@ class _PlaygroundState extends State<Playground> {
     _loadEffectSounds(context).then((List<int> effects) {
       _soundEffects.addAll(effects);
     });
-    final CirclesBloc bloc = CirclesBlocProvider.of(context);
+    final ShapesBloc bloc = CirclesBlocProvider.of(context);
     _moveEvents = PublishSubject<DragUpdateDetails>();
     _moveEvents
         .throttle(Duration(milliseconds: 100))
@@ -38,17 +38,17 @@ class _PlaygroundState extends State<Playground> {
       _handleMove(context, bloc, details);
     });
 
-    _soundController = PublishSubject<CirclesBloc>();
+    _soundController = PublishSubject<ShapesBloc>();
     _soundController
         .throttle(Duration(milliseconds: 2000))
-        .listen((CirclesBloc bloc) {
+        .listen((ShapesBloc bloc) {
       _playEffect();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final CirclesBloc bloc = CirclesBlocProvider.of(context);
+    final ShapesBloc bloc = CirclesBlocProvider.of(context);
     return RawGestureDetector(
       gestures: <Type, GestureRecognizerFactory<GestureRecognizer>>{
         MultiTapGestureRecognizer:
@@ -68,8 +68,8 @@ class _PlaygroundState extends State<Playground> {
       child: Container(
         color: Colors.white,
         child: StreamBuilder<List<ShapeWidget>>(
-          stream: bloc.circles,
-          initialData: bloc.circles.value,
+          stream: bloc.shapes,
+          initialData: bloc.shapes.value,
           builder: (_, AsyncSnapshot<List<ShapeWidget>> snap) => Stack(
                 fit: StackFit.expand,
                 children: snap.data,
@@ -88,23 +88,23 @@ class _PlaygroundState extends State<Playground> {
   }
 
   void _handleTap(
-      BuildContext context, CirclesBloc bloc, TapDownDetails details) {
+      BuildContext context, ShapesBloc bloc, TapDownDetails details) {
     final RenderBox box = context.findRenderObject();
     final Offset localOffset = box.globalToLocal(details.globalPosition);
     _addCircle(bloc, localOffset);
   }
 
   void _handleMove(
-      BuildContext context, CirclesBloc bloc, DragUpdateDetails details) {
+      BuildContext context, ShapesBloc bloc, DragUpdateDetails details) {
     final RenderBox box = context.findRenderObject();
     final Offset localOffset = box.globalToLocal(details.globalPosition);
     _addCircle(bloc, localOffset);
   }
 
-  Future<void> _addCircle(CirclesBloc bloc, Offset offset) async {
+  Future<void> _addCircle(ShapesBloc bloc, Offset offset) async {
     const double circleRadius = ShapeWidget.SIZE / 2;
 
-    bloc.circleAddition.add(
+    bloc.shapeAddition.add(
       ShapeWidget(
         key: UniqueKey(),
         x: offset.dx - circleRadius,
