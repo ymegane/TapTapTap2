@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taptaptap2/bloc/circles_bloc_provider.dart';
-import 'package:taptaptap2/widget/circles.dart';
+import 'package:taptaptap2/widget/playground.dart';
 
 class PlaygroundScreen extends StatelessWidget {
   @override
@@ -9,7 +9,7 @@ class PlaygroundScreen extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           Center(
-            child: Circles(),
+            child: Playground(),
           ),
           SafeArea(
             child: Padding(

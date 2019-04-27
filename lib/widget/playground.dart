@@ -9,12 +9,12 @@ import 'package:taptaptap2/bloc/circles_bloc.dart';
 import 'package:taptaptap2/bloc/circles_bloc_provider.dart';
 import 'package:taptaptap2/widget/circle.dart';
 
-class Circles extends StatefulWidget {
+class Playground extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _CirclesState();
+  State<StatefulWidget> createState() => _PlaygroundState();
 }
 
-class _CirclesState extends State<Circles> {
+class _PlaygroundState extends State<Playground> {
   PublishSubject<DragUpdateDetails> _moveEvents;
   PublishSubject<CirclesBloc> _soundController;
 
