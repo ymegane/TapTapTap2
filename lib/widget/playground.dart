@@ -7,7 +7,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:taptaptap2/bloc/circles_bloc.dart';
 import 'package:taptaptap2/bloc/circles_bloc_provider.dart';
-import 'package:taptaptap2/widget/circle.dart';
+import 'package:taptaptap2/widget/shape_widget.dart';
 
 class Playground extends StatefulWidget {
   @override
@@ -67,10 +67,10 @@ class _PlaygroundState extends State<Playground> {
       },
       child: Container(
         color: Colors.white,
-        child: StreamBuilder<List<Circle>>(
+        child: StreamBuilder<List<ShapeWidget>>(
           stream: bloc.circles,
           initialData: bloc.circles.value,
-          builder: (_, AsyncSnapshot<List<Circle>> snap) => Stack(
+          builder: (_, AsyncSnapshot<List<ShapeWidget>> snap) => Stack(
                 fit: StackFit.expand,
                 children: snap.data,
               ),
@@ -102,10 +102,10 @@ class _PlaygroundState extends State<Playground> {
   }
 
   Future<void> _addCircle(CirclesBloc bloc, Offset offset) async {
-    const double circleRadius = Circle.SIZE / 2;
+    const double circleRadius = ShapeWidget.SIZE / 2;
 
     bloc.circleAddition.add(
-      Circle(
+      ShapeWidget(
         key: UniqueKey(),
         x: offset.dx - circleRadius,
         y: offset.dy - circleRadius,

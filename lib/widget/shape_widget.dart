@@ -6,8 +6,8 @@ import 'package:taptaptap2/util/random_color.dart' as random_color;
 
 import 'scale_fade_animatoin.dart';
 
-class Circle extends StatefulWidget {
-  const Circle(
+class ShapeWidget extends StatefulWidget {
+  const ShapeWidget(
       {@required Key key,
       @required this.x,
       @required this.y,
@@ -21,10 +21,11 @@ class Circle extends StatefulWidget {
   static const double SIZE = 300.0;
 
   @override
-  State<StatefulWidget> createState() => _CircleState();
+  State<StatefulWidget> createState() => _ShapeWidgetState();
 }
 
-class _CircleState extends State<Circle> with TickerProviderStateMixin {
+class _ShapeWidgetState extends State<ShapeWidget>
+    with TickerProviderStateMixin {
   AnimationController _animationController;
 
   final Color _randomColor = random_color.get();

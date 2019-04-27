@@ -7,8 +7,8 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:taptaptap2/widget/app.dart';
-import 'package:taptaptap2/widget/circle.dart';
 import 'package:taptaptap2/widget/playground.dart';
+import 'package:taptaptap2/widget/shape_widget.dart';
 
 void main() {
   testWidgets('Has Circles', (WidgetTester tester) async {
@@ -23,7 +23,7 @@ void main() {
       await tester.tap(find.byType(Playground), pointer: 2);
       await tester.pump();
 
-      expect(find.byType(Circle), findsNWidgets(3));
+      expect(find.byType(ShapeWidget), findsNWidgets(3));
     });
   });
 }

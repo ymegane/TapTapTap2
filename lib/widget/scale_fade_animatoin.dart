@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taptaptap2/widget/circle.dart';
+import 'package:taptaptap2/widget/shape_widget.dart';
 
 class ScaleFadeAnimation extends StatelessWidget {
   ScaleFadeAnimation({
@@ -17,7 +17,7 @@ class ScaleFadeAnimation extends StatelessWidget {
         ),
         size = Tween<double>(
           begin: 0.0,
-          end: Circle.SIZE,
+          end: ShapeWidget.SIZE,
         ).animate(
           CurvedAnimation(
             parent: controller,
@@ -26,8 +26,8 @@ class ScaleFadeAnimation extends StatelessWidget {
         ),
         padding = EdgeInsetsTween(
           begin: const EdgeInsets.only(
-            left: Circle.SIZE / 2,
-            top: Circle.SIZE / 2,
+            left: ShapeWidget.SIZE / 2,
+            top: ShapeWidget.SIZE / 2,
           ),
           end: const EdgeInsets.only(
             left: 0,
