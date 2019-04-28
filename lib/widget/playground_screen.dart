@@ -6,26 +6,34 @@ class PlaygroundScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CirclesBlocProvider(
-      child: Stack(
-        children: <Widget>[
-          Center(
-            child: Playground(),
-          ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 16.0),
-              child: SizedBox(
-                height: 48,
-                child: RaisedButton(
-                  color: Colors.white,
-                  child: const Icon(Icons.close),
-                  shape: CircleBorder(),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ),
-            ),
-          )
-        ],
+      child: _content(context),
+    );
+  }
+
+  Widget _content(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        Container(
+          child: Playground(),
+        ),
+        SafeArea(
+          child: _buildCloseButton(context),
+        )
+      ],
+    );
+  }
+
+  Widget _buildCloseButton(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 16.0),
+      child: SizedBox(
+        height: 48,
+        child: RaisedButton(
+          color: Colors.white,
+          child: const Icon(Icons.close),
+          shape: CircleBorder(),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
     );
   }
