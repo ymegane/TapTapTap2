@@ -5,14 +5,14 @@ import 'package:taptaptap2/widget/shape_widget.dart';
 class ShapesBloc implements Bloc {
   ShapesBloc() {
     _addController.stream.listen((ShapeWidget shape) {
-      _cachedshapes.add(shape);
-      _shapes.add(_cachedshapes);
-      _shapeCount.add(_cachedshapes.length);
+      _cachedShapes.add(shape);
+      _shapes.add(_cachedShapes);
+      _shapeCount.add(_cachedShapes.length);
     });
     _deleteController.stream.listen((ShapeWidget shape) {
-      _cachedshapes.remove(shape);
-      _shapes.add(_cachedshapes);
-      _shapeCount.add(_cachedshapes.length);
+      _cachedShapes.remove(shape);
+      _shapes.add(_cachedShapes);
+      _shapeCount.add(_cachedShapes.length);
     });
   }
 
@@ -25,7 +25,7 @@ class ShapesBloc implements Bloc {
   final PublishSubject<ShapeWidget> _deleteController =
       PublishSubject<ShapeWidget>();
 
-  final List<ShapeWidget> _cachedshapes = <ShapeWidget>[];
+  final List<ShapeWidget> _cachedShapes = <ShapeWidget>[];
 
   ValueObservable<List<ShapeWidget>> get shapes => _shapes;
 
