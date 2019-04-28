@@ -36,10 +36,11 @@ class ShapesBloc implements Bloc {
   Sink<ShapeWidget> get shapeDeletion => _deleteController.sink;
 
   @override
-  void dispose() {
-    _shapes.close();
-    _shapeCount.close();
-    _addController.close();
-    _deleteController.close();
+  Future<void> dispose() async {
+    await _shapes.close();
+    await _shapeCount.close();
+    await _addController.close();
+    await _deleteController.close();
+    _cachedShapes.clear();
   }
 }
