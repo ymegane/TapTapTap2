@@ -14,14 +14,14 @@ packages:
       name: args
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.5.1"
+    version: "1.5.2"
   async:
     dependency: transitive
     description:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.2.0"
   bloc_provider:
     dependency: "direct main"
     description:
@@ -139,7 +139,7 @@ packages:
       name: http_multi_server
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.6"
+    version: "2.1.0"
   http_parser:
     dependency: transitive
     description:
@@ -174,7 +174,7 @@ packages:
       name: json_rpc_2
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.10"
+    version: "2.1.0"
   kernel:
     dependency: transitive
     description:
@@ -202,7 +202,7 @@ packages:
       name: mime
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.6+2"
+    version: "0.9.6+3"
   multi_server_socket:
     dependency: transitive
     description:
@@ -279,7 +279,7 @@ packages:
       name: quiver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.3"
   rxdart:
     dependency: "direct main"
     description:
@@ -326,7 +326,7 @@ packages:
       name: soundpool
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.1"
+    version: "0.5.3"
   source_map_stack_trace:
     dependency: transitive
     description:
@@ -382,21 +382,21 @@ packages:
       name: test
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.6.1"
+    version: "1.6.3"
   test_api:
     dependency: transitive
     description:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.4"
+    version: "0.2.5"
   test_core:
     dependency: transitive
     description:
       name: test_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.3"
+    version: "0.2.5"
   typed_data:
     dependency: transitive
     description:
@@ -417,7 +417,7 @@ packages:
       name: vm_service_client
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.6+1"
+    version: "0.2.6+2"
   watcher:
     dependency: transitive
     description:
@@ -440,5 +440,5 @@ packages:
     source: hosted
     version: "2.1.15"
 sdks:
-  dart: ">=2.2.0 <3.0.0"
+  dart: ">=2.3.0 <3.0.0"
   flutter: ">=0.4.4 <2.0.0"
