@@ -14,8 +14,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/soundpool/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
-  soundpool: 958675837d00cca7762a79d6fe1bef72be00a9ed
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  soundpool: 2297d28eb1ed846db0343b4a363936e3f88e968f
 
 PODFILE CHECKSUM: cbc592c76da838e6d07ee8df6ed05cb3a405d0b3
 
