@@ -34,7 +34,7 @@ class _ShapeWidgetState extends State<ShapeWidget>
   @override
   void initState() {
     _animationController = AnimationController(
-      duration: Duration(milliseconds: 2000),
+      duration: const Duration(milliseconds: 2000),
       vsync: this,
     )..addStatusListener((AnimationStatus status) {
         //print(status);

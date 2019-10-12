@@ -31,7 +31,7 @@ class PlaygroundScreen extends StatelessWidget {
         child: RaisedButton(
           color: Colors.white,
           child: const Icon(Icons.close),
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),

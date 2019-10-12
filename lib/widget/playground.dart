@@ -33,14 +33,14 @@ class _PlaygroundState extends State<Playground> {
     final ShapesBloc bloc = CirclesBlocProvider.of(context);
     _moveEvents = PublishSubject<DragUpdateDetails>();
     _moveEvents
-        .throttle(Duration(milliseconds: 100))
+        .throttle(const Duration(milliseconds: 100))
         .listen((DragUpdateDetails details) {
       _handleMove(context, bloc, details);
     });
 
     _soundController = PublishSubject<ShapesBloc>();
     _soundController
-        .throttle(Duration(milliseconds: 2000))
+        .throttle(const Duration(milliseconds: 2000))
         .listen((ShapesBloc bloc) {
       _playEffect();
     });
@@ -71,9 +71,9 @@ class _PlaygroundState extends State<Playground> {
           stream: bloc.shapes,
           initialData: bloc.shapes.value,
           builder: (_, AsyncSnapshot<List<ShapeWidget>> snap) => Stack(
-                fit: StackFit.expand,
-                children: snap.data,
-              ),
+            fit: StackFit.expand,
+            children: snap.data,
+          ),
         ),
       ),
     );
