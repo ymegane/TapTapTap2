@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>$(IOS_DISPLAY_NAME)</string>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
