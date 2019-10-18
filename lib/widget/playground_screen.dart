@@ -11,15 +11,17 @@ class PlaygroundScreen extends StatelessWidget {
   }
 
   Widget _content(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Container(
-          child: Playground(),
-        ),
-        SafeArea(
-          child: _buildCloseButton(context),
-        )
-      ],
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          Container(
+            child: Playground(),
+          ),
+          SafeArea(
+            child: _buildCloseButton(context),
+          )
+        ],
+      ),
     );
   }
 
@@ -29,7 +31,7 @@ class PlaygroundScreen extends StatelessWidget {
       child: SizedBox(
         height: 48,
         child: RaisedButton(
-          color: Colors.white,
+          color: Theme.of(context).primaryColor,
           child: const Icon(Icons.close),
           shape: const CircleBorder(),
           onPressed: () => Navigator.of(context).pop(),

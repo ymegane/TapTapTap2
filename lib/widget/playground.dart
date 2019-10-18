@@ -66,7 +66,7 @@ class _PlaygroundState extends State<Playground> {
         }),
       },
       child: Container(
-        color: Colors.white,
+        color: Theme.of(context).backgroundColor,
         child: StreamBuilder<List<ShapeWidget>>(
           stream: bloc.shapes,
           initialData: bloc.shapes.value,
