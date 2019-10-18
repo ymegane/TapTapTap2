@@ -33,14 +33,14 @@ class _PlaygroundState extends State<Playground> {
     final ShapesBloc bloc = CirclesBlocProvider.of(context);
     _moveEvents = PublishSubject<DragUpdateDetails>();
     _moveEvents
-        .throttle(const Duration(milliseconds: 100))
+        .throttleTime(const Duration(milliseconds: 100))
         .listen((DragUpdateDetails details) {
       _handleMove(context, bloc, details);
     });
 
     _soundController = PublishSubject<ShapesBloc>();
     _soundController
-        .throttle(const Duration(milliseconds: 2000))
+        .throttleTime(const Duration(milliseconds: 2000))
         .listen((ShapesBloc bloc) {
       _playEffect();
     });
