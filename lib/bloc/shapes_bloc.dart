@@ -27,9 +27,9 @@ class ShapesBloc implements Bloc {
 
   final List<ShapeWidget> _cachedShapes = <ShapeWidget>[];
 
-  ValueObservable<List<ShapeWidget>> get shapes => _shapes;
+  ValueStream<List<ShapeWidget>> get shapes => _shapes;
 
-  ValueObservable<int> get shapeCount => _shapeCount;
+  ValueStream<int> get shapeCount => _shapeCount;
 
   Sink<ShapeWidget> get shapeAddition => _addController.sink;
 
