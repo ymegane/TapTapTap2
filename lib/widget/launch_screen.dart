@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LaunchScreen extends StatelessWidget {
   @override
@@ -13,13 +14,11 @@ class LaunchScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const Text(
+                  Text(
                     'TapTapTap',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'LuckiestGuy',
-                      fontSize: 48.0,
-                    ),
+                    style: GoogleFonts.luckiestGuy(
+                        fontSize: 48, fontWeight: FontWeight.w400),
                   ),
                   const Padding(
                     padding: EdgeInsets.all(4.0),
