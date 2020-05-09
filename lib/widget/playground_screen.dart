@@ -26,13 +26,14 @@ class PlaygroundScreen extends StatelessWidget {
   }
 
   Widget _buildCloseButton(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
       child: SizedBox(
         height: 48,
         child: RaisedButton(
-          color: Theme.of(context).primaryColor,
-          child: const Icon(Icons.close),
+          color: theme.primaryColor,
+          child: Icon(Icons.close, color: theme.primaryTextTheme.button.color),
           shape: const CircleBorder(),
           onPressed: () => Navigator.of(context).pop(),
         ),

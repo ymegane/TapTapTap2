@@ -49,6 +49,7 @@ class _PlaygroundState extends State<Playground> {
   @override
   Widget build(BuildContext context) {
     final ShapesBloc bloc = CirclesBlocProvider.of(context);
+    final ThemeData theme = Theme.of(context);
     return RawGestureDetector(
       gestures: <Type, GestureRecognizerFactory<GestureRecognizer>>{
         MultiTapGestureRecognizer:
@@ -66,7 +67,7 @@ class _PlaygroundState extends State<Playground> {
         }),
       },
       child: Container(
-        color: Theme.of(context).backgroundColor,
+        color: theme.backgroundColor,
         child: StreamBuilder<List<ShapeWidget>>(
           stream: bloc.shapes,
           initialData: bloc.shapes.value,

@@ -10,6 +10,8 @@ class LaunchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -39,7 +41,8 @@ class LaunchScreen extends StatelessWidget {
                   SizedBox(
                     width: 240,
                     child: RaisedButton(
-                      color: Theme.of(context).primaryColor,
+                      color: theme.accentColor,
+                      textColor: theme.accentTextTheme.button.color,
                       child: const Text(
                         'Start',
                         textAlign: TextAlign.center,
