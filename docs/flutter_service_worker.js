@@ -3,8 +3,8 @@ const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "favicon-16x16.png": "765276c7c36e893fdbe9137ccb1b5bc6",
 "favicon.ico": "6c0370d04fc24685915ea23e93844d41",
-"index.html": "2adcdec0a1d80a35fd374c997b245af2",
-"/": "2adcdec0a1d80a35fd374c997b245af2",
+"index.html": "989e45922e5872b6eb8f386aae9197b7",
+"/": "989e45922e5872b6eb8f386aae9197b7",
 "apple-touch-icon.png": "7fce73aadc7f2bdac2e88f68cbeeae4a",
 "main.dart.js.deps": "5b8b0e59bd0013d60f97349c99942a78",
 "main.dart.js": "706bb2b9b8ba19be5c68bfc5e7feb6ed",
