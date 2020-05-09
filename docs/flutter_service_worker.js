@@ -7,7 +7,7 @@ const RESOURCES = {
 "/": "2adcdec0a1d80a35fd374c997b245af2",
 "apple-touch-icon.png": "7fce73aadc7f2bdac2e88f68cbeeae4a",
 "main.dart.js.deps": "5b8b0e59bd0013d60f97349c99942a78",
-"main.dart.js": "4a983c7ce6bdd7e7360234a70b593df3",
+"main.dart.js": "706bb2b9b8ba19be5c68bfc5e7feb6ed",
 "icons/android-chrome-192x192.png": "9e925489f2011fa23144b01bb7490615",
 "icons/android-chrome-512x512.png": "99b3a5e6770ea8642a86bd281cfcbede",
 "manifest.json": "04bedbc11004d817e7ab6f593c228329",
