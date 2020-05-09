@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LaunchScreen extends StatelessWidget {
+  final TextStyle _titleStyle =
+      GoogleFonts.luckiestGuy(fontSize: 48, fontWeight: FontWeight.w400);
+  final TextStyle _messageStyle = GoogleFonts.notoSans(
+    fontSize: 16.0,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,18 +23,15 @@ class LaunchScreen extends StatelessWidget {
                   Text(
                     'TapTapTap',
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.luckiestGuy(
-                        fontSize: 48, fontWeight: FontWeight.w400),
+                    style: _titleStyle,
                   ),
                   const Padding(
                     padding: EdgeInsets.all(4.0),
                   ),
-                  const Text(
+                  Text(
                     'A toy app for my children',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    ),
+                    style: _messageStyle,
                   ),
                   const Padding(
                     padding: EdgeInsets.all(48),
@@ -51,12 +54,10 @@ class LaunchScreen extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: Container(
                 padding: const EdgeInsets.only(bottom: 16),
-                child: const Text(
-                  'Copyright 2019 @y_megane',
+                child: Text(
+                  'Copyright 2020 @y_megane',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 14.0,
-                  ),
+                  style: _messageStyle,
                 ),
               ),
             )
