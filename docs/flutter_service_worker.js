@@ -10,7 +10,7 @@ const RESOURCES = {
 "main.dart.js": "706bb2b9b8ba19be5c68bfc5e7feb6ed",
 "icons/android-chrome-192x192.png": "9e925489f2011fa23144b01bb7490615",
 "icons/android-chrome-512x512.png": "99b3a5e6770ea8642a86bd281cfcbede",
-"manifest.json": "04bedbc11004d817e7ab6f593c228329",
+"manifest.json": "8dc52f47b0b6cf66c22e4697eb3b954f",
 "assets/LICENSE": "9f4ab8d2beb26e8cddcb00768dbafd7c",
 "assets/AssetManifest.json": "a21680c85dcd0a3afc035cae44a14306",
 "assets/FontManifest.json": "580ff1a5d08679ded8fcf5c6848cece7",
