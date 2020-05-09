@@ -1,6 +1,6 @@
 {
-    "name": "taptaptap2",
-    "short_name": "taptaptap2",
+    "name": "TapTapTap",
+    "short_name": "TapTapTap",
     "start_url": ".",
     "display": "minimal-ui",
     "background_color": "#FFFFFF",
