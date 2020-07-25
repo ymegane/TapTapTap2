@@ -9,13 +9,12 @@ const RESOURCES = {
 "/": "989e45922e5872b6eb8f386aae9197b7",
 "apple-touch-icon.png": "7fce73aadc7f2bdac2e88f68cbeeae4a",
 "main.dart.js.deps": "5b8b0e59bd0013d60f97349c99942a78",
-"main.dart.js": "f80ee2eb5fc91c7eb3ee3d276fd22cfd",
+"main.dart.js": "d1b704e7869fbdce8974dcfb1b9c083b",
 "icons/android-chrome-192x192.png": "9e925489f2011fa23144b01bb7490615",
 "icons/android-chrome-512x512.png": "99b3a5e6770ea8642a86bd281cfcbede",
 "manifest.json": "5c867710fc56fe4a5c1e2362be2fa559",
-"assets/LICENSE": "ac37478b4d3f441d70a03ec65b0f76dc",
 "assets/AssetManifest.json": "a21680c85dcd0a3afc035cae44a14306",
-"assets/NOTICES": "91465c1800d99164a0fbe40b9118ede9",
+"assets/NOTICES": "006c34bbc58dcd8758478549499a4745",
 "assets/FontManifest.json": "580ff1a5d08679ded8fcf5c6848cece7",
 "assets/fonts/MaterialIcons-Regular.ttf": "56d3ffdef7a25659eab6a68a3fbfaf16",
 "assets/assets/ani_ge_flog03.mp3": "304f394d690afc15290c2ef5551890b2",
@@ -34,7 +33,7 @@ const CORE = [
   "/",
 "main.dart.js",
 "index.html",
-"assets/LICENSE",
+"assets/NOTICES",
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
 
@@ -116,7 +115,7 @@ self.addEventListener("fetch", (event) => {
   if (event.request.url == origin || event.request.url.startsWith(origin + '/#')) {
     key = '/';
   }
-  // If the URL is not the the RESOURCE list, skip the cache.
+  // If the URL is not the RESOURCE list, skip the cache.
   if (!RESOURCES[key]) {
     return event.respondWith(fetch(event.request));
   }
@@ -139,11 +138,11 @@ self.addEventListener("fetch", (event) => {
 self.addEventListener('message', (event) => {
   // SkipWaiting can be used to immediately activate a waiting service worker.
   // This will also require a page refresh triggered by the main worker.
-  if (event.message == 'skipWaiting') {
+  if (event.data === 'skipWaiting') {
     return self.skipWaiting();
   }
 
-  if (event.message = 'downloadOffline') {
+  if (event.message === 'downloadOffline') {
     downloadOffline();
   }
 });
@@ -163,8 +162,8 @@ async function downloadOffline() {
   }
   for (var resourceKey in Object.keys(RESOURCES)) {
     if (!currentContent[resourceKey]) {
-      resources.add(resourceKey);
+      resources.push(resourceKey);
     }
   }
-  return Cache.addAll(resources);
+  return contentCache.addAll(resources);
 }
