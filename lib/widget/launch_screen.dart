@@ -22,7 +22,7 @@ class LaunchScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
+                  SelectableText(
                     'TapTapTap',
                     textAlign: TextAlign.center,
                     style: _titleStyle,
@@ -30,7 +30,7 @@ class LaunchScreen extends StatelessWidget {
                   const Padding(
                     padding: EdgeInsets.all(4.0),
                   ),
-                  Text(
+                  SelectableText(
                     'A toy app for my children',
                     textAlign: TextAlign.center,
                     style: _messageStyle,
@@ -57,7 +57,7 @@ class LaunchScreen extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: Container(
                 padding: const EdgeInsets.only(bottom: 16),
-                child: Text(
+                child: SelectableText(
                   'Copyright 2020 @y_megane',
                   textAlign: TextAlign.center,
                   style: _messageStyle,
