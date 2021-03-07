@@ -71,7 +71,7 @@ class _PlaygroundState extends State<Playground> {
         child: StreamBuilder<List<ShapeWidget>>(
           stream: bloc.shapes,
           initialData: bloc.shapes.value,
-          builder: (_, AsyncSnapshot<List<ShapeWidget>> snap) => Stack(
+          builder: (dynamic _, AsyncSnapshot<List<ShapeWidget>> snap) => Stack(
             fit: StackFit.expand,
             children: snap.data,
           ),
