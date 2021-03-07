@@ -19,8 +19,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  bloc_provider: ^0.7.0
-  rxdart: ^0.24.0
+  bloc_provider: ^0.8.0
+  rxdart: ^0.26.0
   soundpool: ^1.0.0
   google_fonts: ^1.0.0
 
