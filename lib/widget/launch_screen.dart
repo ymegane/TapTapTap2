@@ -40,9 +40,11 @@ class LaunchScreen extends StatelessWidget {
                   ),
                   SizedBox(
                     width: 240,
-                    child: RaisedButton(
-                      color: theme.accentColor,
-                      textColor: theme.accentTextTheme.button.color,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: theme.colorScheme.secondary,
+                        foregroundColor: theme.colorScheme.onSecondary,
+                      ),
                       child: const Text(
                         'Start',
                         textAlign: TextAlign.center,

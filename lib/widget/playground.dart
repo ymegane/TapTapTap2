@@ -15,10 +15,10 @@ class Playground extends StatefulWidget {
 }
 
 class _PlaygroundState extends State<Playground> {
-  PublishSubject<DragUpdateDetails> _moveEvents;
-  PublishSubject<ShapesBloc> _soundController;
+  late PublishSubject<DragUpdateDetails> _moveEvents;
+  late PublishSubject<ShapesBloc> _soundController;
 
-  Soundpool _soundpool;
+  late Soundpool _soundpool;
   final List<int> _soundEffects = <int>[];
 
   @override
@@ -67,13 +67,13 @@ class _PlaygroundState extends State<Playground> {
         }),
       },
       child: Container(
-        color: theme.backgroundColor,
+        color: theme.colorScheme.background,
         child: StreamBuilder<List<ShapeWidget>>(
           stream: bloc.shapes,
           initialData: bloc.shapes.value,
           builder: (dynamic _, AsyncSnapshot<List<ShapeWidget>> snap) => Stack(
             fit: StackFit.expand,
-            children: snap.data,
+            children: snap.data ?? [],
           ),
         ),
       ),
@@ -90,14 +90,16 @@ class _PlaygroundState extends State<Playground> {
 
   void _handleTap(
       BuildContext context, ShapesBloc bloc, TapDownDetails details) {
-    final RenderBox box = context.findRenderObject();
+    final RenderBox? box = context.findRenderObject() as RenderBox?;
+    if (box == null) return;
     final Offset localOffset = box.globalToLocal(details.globalPosition);
     _addCircle(bloc, localOffset);
   }
 
   void _handleMove(
       BuildContext context, ShapesBloc bloc, DragUpdateDetails details) {
-    final RenderBox box = context.findRenderObject();
+    final RenderBox? box = context.findRenderObject() as RenderBox?;
+    if (box == null) return;
     final Offset localOffset = box.globalToLocal(details.globalPosition);
     _addCircle(bloc, localOffset);
   }

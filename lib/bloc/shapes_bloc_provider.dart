@@ -4,10 +4,10 @@ import 'package:taptaptap2/bloc/shapes_bloc.dart';
 
 class CirclesBlocProvider extends BlocProvider<ShapesBloc> {
   CirclesBlocProvider({
-    @required Widget child,
+    required Widget child,
   }) : super(
             child: child,
-            creator: (BuildContext context, BlocCreatorBag bag) {
+            creator: (BuildContext context, BlocCreatorBag? bag) {
               assert(context != null);
               return ShapesBloc();
             });

@@ -31,10 +31,13 @@ class PlaygroundScreen extends StatelessWidget {
       padding: const EdgeInsets.only(top: 16.0),
       child: SizedBox(
         height: 48,
-        child: RaisedButton(
-          color: theme.primaryColor,
-          child: Icon(Icons.close, color: theme.primaryTextTheme.button.color),
-          shape: const CircleBorder(),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: theme.colorScheme.primary,
+            foregroundColor: theme.colorScheme.onPrimary,
+            shape: const CircleBorder(),
+          ),
+          child: const Icon(Icons.close),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),

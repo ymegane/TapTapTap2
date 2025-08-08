@@ -9,10 +9,10 @@ import 'scale_fade_animatoin.dart';
 
 class ShapeWidget extends StatefulWidget {
   const ShapeWidget(
-      {@required Key key,
-      @required this.x,
-      @required this.y,
-      @required this.bloc})
+      {Key? key,
+      required this.x,
+      required this.y,
+      required this.bloc})
       : super(key: key);
 
   final double x;
@@ -27,7 +27,7 @@ class ShapeWidget extends StatefulWidget {
 
 class _ShapeWidgetState extends State<ShapeWidget>
     with TickerProviderStateMixin {
-  AnimationController _animationController;
+  late AnimationController _animationController;
 
   final Color _randomColor = random_color.get();
 
