@@ -3,9 +3,9 @@ import 'package:taptaptap2/widget/shape_widget.dart';
 
 class ScaleFadeAnimation extends StatelessWidget {
   ScaleFadeAnimation({
-    Key key,
-    @required this.controller,
-    @required this.child,
+    Key? key,
+    required this.controller,
+    required this.child,
   })  : opacity = Tween<double>(
           begin: 1.0,
           end: 0,
@@ -47,7 +47,7 @@ class ScaleFadeAnimation extends StatelessWidget {
   final Animation<double> size;
   final Widget child;
 
-  Widget _buildAnimation(BuildContext context, Widget child) {
+  Widget _buildAnimation(BuildContext context, Widget? child) {
     return Container(
       alignment: Alignment.bottomCenter,
       padding: padding.value,

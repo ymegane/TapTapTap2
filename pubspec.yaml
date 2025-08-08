@@ -14,22 +14,22 @@ description: A toy app for my children
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.3.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  bloc_provider: ^0.8.0
-  rxdart: ^0.26.0
-  soundpool: ^1.0.0
-  google_fonts: ^1.0.0
+  bloc_provider: ^1.0.0
+  rxdart: ^0.28.0
+  soundpool: ^2.4.1
+  google_fonts: ^6.3.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_driver:
     sdk: flutter
-  test: any
+  test: ^1.25.15
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
